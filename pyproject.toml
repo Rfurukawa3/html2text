@@ -1,0 +1,64 @@
+[project]
+name = "html2text"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Rfurukawa3", email = "rfurukawa3@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = []
+
+[project.scripts]
+html2text = "html2text:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+    "pytest-cov>=6.2.1",
+    "ruff>=0.12.5",
+]
+
+[tool.ruff]
+line-length = 120
+exclude = [".venv", "tmp"]
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "D1",    # undocumented
+    "D203",  # one blank line before class
+    "D213",  # multi-line summary second line
+    "TD001", # invalid todo tag
+    "TD002", # missing todo author
+    "TD003", # missing todo link
+    "PD011", # pandas use of dot values
+    "ERA",   # commented-out-code
+    "PLR0913", # too many arguments in function
+    "PLR0915", # too many statements in function
+]
+unfixable = [
+    "F401", # unused import
+    "F841", # unused variable
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = [
+    "S101",     # assert statements in tests are normal
+    "PLR2004",  # magic values in tests are acceptable
+    "SLF001",   # accessing private members in tests is normal
+    "INP001",   # implicit namespace packages in tests
+    "E712",     # allow equality comparisons with False in tests
+    "F401",     # allow unused imports in tests
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
